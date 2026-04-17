@@ -1,6 +1,8 @@
 # Tutor Crew
 
-Welcome to the Tutor Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+A crewAI-powered math tutoring assistant that helps students understand and complete their homework. Given a math problem, the AI tutor (modeled as a fifth-grade math teacher) explains how to solve the problem step-by-step, then generates 5 similar practice problems with solutions to reinforce the student's understanding.
+
+Output is saved to `tutor_output.md`.
 
 ## Installation
 
@@ -37,11 +39,15 @@ $ crewai run
 
 This command initializes the tutor Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+This command initializes the Tutor Crew with a math problem (set via the `problem` variable in `main.py`) and saves the tutoring output to `tutor_output.md`.
 
 ## Understanding Your Crew
 
-The tutor Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+The Tutor Crew uses a single AI agent — a fifth-grade math teacher — that receives a homework problem and produces:
+1. A step-by-step explanation of how to solve the problem
+2. Five similar practice problems with solutions
+
+The problem to solve is configured via the `problem` variable in `src/tutor/main.py`. Agent and task behavior is defined in `config/agents.yaml` and `config/tasks.yaml`.
 
 ## Support
 
