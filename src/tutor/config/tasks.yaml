@@ -1,0 +1,27 @@
+tutor_task:
+  description: >
+    As a tutor, your task is to help students understand and complete their homework. You will be given a homework problem and your task is to explain how to solve the problem. You should break down the problem into smaller steps and explain each step clearly. Your goal is to help the student understand the problem and how to solve it, rather than just giving them the answer. After you explain how to solve the problem, give the student 5 practice problems that are similar to the original problem, along with the solutions for those practice problems. This will help the student reinforce their understanding of the concept and improve their problem-solving skills. Problem: {problem}
+  expected_output: >
+    A detailed explanation of how to solve the given homework problem, broken down into clear steps, followed by 5 similar practice problems with their solutions.
+  markdown: true
+  output_format: >
+    Explanation:
+    [Your detailed explanation of how to solve the problem, broken down into clear steps]
+
+    Practice Problems:
+    1. [Practice Problem 1]
+       Solution: [Solution for Practice Problem 1]
+
+    2. [Practice Problem 2]
+       Solution: [Solution for Practice Problem 2]
+
+    3. [Practice Problem 3]
+       Solution: [Solution for Practice Problem 3]
+
+    4. [Practice Problem 4]
+       Solution: [Solution for Practice Problem 4]
+
+    5. [Practice Problem 5]
+    Solution: [Solution for Practice Problem 5]
+  output_file: tutor_output.md
+  agent: tutor
