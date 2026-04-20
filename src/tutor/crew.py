@@ -1,6 +1,9 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
+
+from tutor.worksheet import create_worksheet
+
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -23,7 +26,8 @@ class Tutor():
     def tutor_task(self) -> Task:
         return Task(
             config=self.tasks_config['tutor_task'], # type: ignore[index]
-            verbose=True
+            verbose=True,
+            tools=[create_worksheet] # Adding the worksheet creation tool to the task
         )
 
     @crew
