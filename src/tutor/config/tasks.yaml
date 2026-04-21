@@ -1,29 +1,41 @@
 tutor_task:
-  description: >
-    As a tutor, your task is to help students understand and complete their homework. You will be given a homework problem and your task is to explain how to solve the problem. You should break down the problem into smaller steps and explain each step clearly. Your goal is to help the student understand the problem and how to solve it, rather than just giving them the answer. 
-    
-    After you explain how to solve the problem, create a worksheet using the create_worksheet tool. Create a markdown representation of a worksheet with 5 practice problems that are similar to the original problem, along with the solutions for those practice problems. Then use the create_worksheet tool to generate a PDF of the worksheet. This will help the student reinforce their understanding of the concept and improve their problem-solving skills. Problem: {problem}
-  expected_output: >
-    A detailed explanation of how to solve the given homework problem, broken down into clear steps. A markdown representation of a worksheet with 5 similar practice problems with their solutions.
-  markdown: true
-  output_format: >
-    Explanation:
-    [Your detailed explanation of how to solve the problem, broken down into clear steps]
+   description: >
+      Write a detailed explanation of how to solve the given homework problem,
+      broken down into clear steps. If the there is no specific problem, provide
+      a general explanation of how to approach solving homework problems in the
+      relevant subject area. The explanation should be comprehensive and easy to
+      understand, guiding the student through the problem-solving process
+      effectively.
+   expected_output: >
+      A detailed explanation of how to solve the given homework problem, broken
+      down into clear steps.
+   agent: tutor
 
-    Practice Problems:
-    1. [Practice Problem 1]
-       Solution: [Solution for Practice Problem 1]
+worksheet_task:
+   description: >
+      Create a worksheet with 5 practice problems similar to the given homework
+      problem, along with their solutions. Include 1 step by step example and
+      explanation at the top of the worksheet.The worksheet should be in HTML
+      format and include clear explanations for each problem. The practice
+      problems should be designed to reinforce the concepts needed to solve the
+      original homework problem.
 
-    2. [Practice Problem 2]
-       Solution: [Solution for Practice Problem 2]
+      Then use the create_worksheet tool to generate the HTML worksheet based on
+      the generated html content. The tool uses the FPDF library to create a PDF
+      worksheet from the HTML content. Be sure the styling is compatible with
+      the FPDF library's HTML capabilities, which may require using basic HTML
+      tags and inline styles for formatting.
+      1. Do not include the doctype or head
+      tags, as the content will be directly passed to the FPDF library for
+      rendering.
+      2. Only use Unicode compatible characters and fonts.
+   expected_output: >
+      A string HTML representation of a worksheet with 1 example problem with
+      step-by-step explanation and 5 similar practice problems, each accompanied
+      by their solutions and clear explanations. The worksheet should be
+      structured in a way that facilitates learning and understanding of the
+      concepts required to solve the original homework problem. Be sure to use
+      appropriate HTML tags to format the worksheet for readability and
+      engagement.
+   agent: tutor
 
-    3. [Practice Problem 3]
-       Solution: [Solution for Practice Problem 3]
-
-    4. [Practice Problem 4]
-       Solution: [Solution for Practice Problem 4]
-
-    5. [Practice Problem 5]
-    Solution: [Solution for Practice Problem 5]
-#   output_file: tutor_output.mdF
-  agent: tutor

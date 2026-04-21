@@ -8,8 +8,9 @@ from tutor.worksheet import create_worksheet
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
+
 @CrewBase
-class Tutor():
+class Tutor:
     """Tutor crew"""
 
     agents: list[BaseAgent]
@@ -18,16 +19,23 @@ class Tutor():
     @agent
     def tutor(self) -> Agent:
         return Agent(
-            config=self.agents_config['tutor'], # type: ignore[index]
-            # verbose=True
+            config=self.agents_config["tutor"],
+            verbose=True,  # type: ignore[index]
+            tools=[create_worksheet],  # Adding the worksheet creation tool to the task
         )
-    
+
     @task
     def tutor_task(self) -> Task:
         return Task(
-            config=self.tasks_config['tutor_task'], # type: ignore[index]
+            config=self.tasks_config["tutor_task"],  # type: ignore[index]
             verbose=True,
-            tools=[create_worksheet] # Adding the worksheet creation tool to the task
+        )
+
+    @task
+    def worksheet_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["worksheet_task"],  # type: ignore[index]
+            verbose=True,
         )
 
     @crew
@@ -37,8 +45,8 @@ class Tutor():
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            agents=self.agents,  # Automatically created by the @agent decorator
+            tasks=self.tasks,  # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
